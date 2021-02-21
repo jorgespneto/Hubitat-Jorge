@@ -39,15 +39,30 @@ def initialize() {
 def on() { 
     sendTasmota('IRsend '+ONIR)
     sendEvent(name: "switch", value: "on")
-    sleep(1500)
+    runIn(1,cena2)
+    runIn(2,cena3)
+    runIn(3,cena4)
+    runIn(4,cena5)
+    runIn(5,cena6)
+}
+
+def cena2() {
     sendTasmota('IRsend '+ONIR2)
-    sleep(1500)
+}
+
+def cena3() {
     sendTasmota('IRsend '+ONIR3)
-    sleep(1500)
+}
+
+def cena4() {
     sendTasmota('IRsend '+ONIR4)
-    sleep(1500)
+}
+
+def cena5() {
     sendTasmota('IRsend '+ONIR5)
-    sleep(1500)
+}
+
+def cena6() {
     sendTasmota('IRsend '+ONIR6)
 }
 
