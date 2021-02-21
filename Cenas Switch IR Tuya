@@ -9,6 +9,10 @@ preferences {
 	input name: "username", title:"Username of Tasmota IR", type: "string"
 	input name: "password", title:"Password of Tasmota IR", type: "string"
 	input name: "OnIRsend", title:"On - Código IR", type: "string"
+	input name: "OnIRsend2", title:"On - Código IR2", type: "string"
+	input name: "OnIRsend3", title:"On - Código IR3", type: "string"
+	input name: "OnIRsend4", title:"On - Código IR4", type: "string"
+	input name: "OnIRsend5", title:"On - Código IR5", type: "string"
 	input name: "OffIRsend", title:"Off - Código IR", type: "string"
 	input name: "offThreshold", title:"Off Threshold Power (W)", type: "number", required: true, defaultValue: 3.9
 	input name: "onThreshold", title:"On Threshold Power (W)", type: "number", required: true, defaultValue: 4
@@ -34,6 +38,14 @@ def initialize() {
 def on() { 
     sendTasmota('IRsend '+ONIR)
     sendEvent(name: "switch", value: "on")
+    sleep(1500)
+    sendTasmota('IRsend '+ONIR2)
+    sleep(1500)
+    sendTasmota('IRsend '+ONIR3)
+    sleep(1500)
+    sendTasmota('IRsend '+ONIR4)
+    sleep(1500)
+    sendTasmota('IRsend '+ONIR5)
 }
 
 def off() {
@@ -54,6 +66,23 @@ def sendTasmota(command) {
 
 def getONIR() {
 	return (settings.OnIRsend ?: "")
+}
+
+def getONIR2() {
+	return (settings.OnIRsend2 ?: "")
+}
+
+def getONIR3() {
+	return (settings.OnIRsend3 ?: "")
+	
+}
+
+def getONIR4() {
+	return (settings.OnIRsend4 ?: "")
+}
+
+def getONIR5() {
+	return (settings.OnIRsend5 ?: "")
 }
 
 def getOFFIR() {
