@@ -44,6 +44,7 @@ def on() {
     runIn(6,cena4)
     runIn(8,cena5)
     runIn(10,cena6)
+    runIn(12,autoturnoff)
 }
 
 def cena2() {
@@ -64,6 +65,10 @@ def cena5() {
 
 def cena6() {
     sendTasmota('IRsend '+ONIR6)
+}
+
+def autoturnoff() {
+    sendEvent(name: "switch", value: "off")
 }
 
 def off() {
