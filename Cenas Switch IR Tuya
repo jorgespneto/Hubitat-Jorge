@@ -13,6 +13,7 @@ preferences {
 	input name: "OnIRsend3", title:"On - Código IR3", type: "string"
 	input name: "OnIRsend4", title:"On - Código IR4", type: "string"
 	input name: "OnIRsend5", title:"On - Código IR5", type: "string"
+	input name: "OnIRsend6", title:"On - Código IR6", type: "string"
 	input name: "OffIRsend", title:"Off - Código IR", type: "string"
 	input name: "offThreshold", title:"Off Threshold Power (W)", type: "number", required: true, defaultValue: 3.9
 	input name: "onThreshold", title:"On Threshold Power (W)", type: "number", required: true, defaultValue: 4
@@ -46,6 +47,8 @@ def on() {
     sendTasmota('IRsend '+ONIR4)
     sleep(1500)
     sendTasmota('IRsend '+ONIR5)
+    sleep(1500)
+    sendTasmota('IRsend '+ONIR6)
 }
 
 def off() {
@@ -83,6 +86,10 @@ def getONIR4() {
 
 def getONIR5() {
 	return (settings.OnIRsend5 ?: "")
+}
+
+def getONIR6() {
+	return (settings.OnIRsend6 ?: "")
 }
 
 def getOFFIR() {
