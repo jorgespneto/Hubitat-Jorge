@@ -29,8 +29,10 @@ metadata {
 		capability "Configuration"
 		capability "Window Shade"
 // mc not supported in HE		capability "Window Shade Preset"
-		capability "Switch Level"
-        capability "Switch" // Jorge Acrescentou
+	//	capability "Switch Level"  Jorge retirou
+    //    capability "Switch" // Jorge retirou
+        capability "Refresh"
+	    capability "HealthCheck" 
 
 		command "pause"
         command "presetPosition"
@@ -172,25 +174,25 @@ def pause() {
 
 // Jorge Mexeu aqui
 
-def off() {
-	if(logEnable) log.info "open()"
-    def currentLevel = device.currentValue("level")
-    if (currentLevel == 100) {
-    	sendEvent(name: "windowShade", value: "open")
-        return
-    }
-	sendTuyaCommand("0104", "00", "0100")
-}
+//def off() {
+//	if(logEnable) log.info "open()"
+//    def currentLevel = device.currentValue("level")
+//    if (currentLevel == 100) {
+//    	sendEvent(name: "windowShade", value: "open")
+//        return
+//  }
+//	sendTuyaCommand("0104", "00", "0100")
+//}
 
-def on() {
-	if(logEnable) log.info "close()"
-	def currentLevel = device.currentValue("level")
-    if (currentLevel == 0) {
-    	sendEvent(name: "windowShade", value: "closed")
-        return
-    }
-	sendTuyaCommand("0104", "00", "0102")
-}
+//def on() {
+//	if(logEnable) log.info "close()"
+//	def currentLevel = device.currentValue("level")
+//    if (currentLevel == 0) {
+//    	sendEvent(name: "windowShade", value: "closed")
+//        return
+//    }
+//	sendTuyaCommand("0104", "00", "0102")
+//}
 
 // Jorge Terminou de mexer aqui
 
@@ -223,6 +225,10 @@ def updated() {
     sendEvent([name:"Direction", value: (val == "00" ? "Forward" : "Reverse")])    
 	DirectionSet(val)
 }	
+
+def poll() {
+	null
+}
 
 def DirectionSet(Dval) {
 	if(logEnable) log.info "Direction set ${Dval} "
