@@ -39,12 +39,12 @@ def initialize() {
 def on() { 
     sendTasmota('IRsend '+ONIR)
     sendEvent(name: "switch", value: "on")
-    runIn(2,cena2)
-    runIn(4,cena3)
-    runIn(6,cena4)
-    runIn(8,cena5)
-    runIn(10,cena6)
-    runIn(12,autoturnoff)
+    runIn(2,'cena2')
+    runIn(4,'cena3')
+    runIn(6,'cena4')
+    runIn(8,'cena5')
+    runIn(10,'cena6')
+    runIn(12,'autoturnoff')
 }
 
 def cena2() {
