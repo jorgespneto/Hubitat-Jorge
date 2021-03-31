@@ -36,57 +36,63 @@ def initialize() {
 
 }
 
-def on() {
+//def on() {
+  //  sendTasmota('IRsend '+ONIR)
+    //sendEvent(name: "switch", value: "on")
+    //pause(2000)
+    //sendTasmota('IRsend '+ONIR2)
+    //pause(2000)
+    //sendTasmota('IRsend '+ONIR3)
+    //pause(2000)
+    //sendTasmota('IRsend '+ONIR4)
+    //pause(2000)
+    //sendTasmota('IRsend '+ONIR5)
+    //pause(2000)
+    //sendTasmota('IRsend '+ONIR6)
+    //pause(2000)
+    //sendEvent(name: "switch", value: "off")
+//}
+
+def on() { 
     sendTasmota('IRsend '+ONIR)
     sendEvent(name: "switch", value: "on")
-    pause(1200)
-    sendTasmota('IRsend '+ONIR2)
-    pause(1200)
-    sendTasmota('IRsend '+ONIR3)
-    pause(1200)
-    sendTasmota('IRsend '+ONIR4)
-    pause(1200)
-    sendTasmota('IRsend '+ONIR5)
-    pause(1200)
-    sendTasmota('IRsend '+ONIR6)
-    pause(1200)
-    sendEvent(name: "switch", value: "off")
+    runIn(2,'cena2')
+    runIn(4,'cena3')
+    runIn(6,'cena4')
+    runIn(8,'cena5')
+    runIn(10,'cena6')
+    runIn(12,'autoturnoff')
 }
 
-//def on() { 
-//    sendTasmota('IRsend '+ONIR)
-//    sendEvent(name: "switch", value: "on")
-//    runIn(2,'cena2')
-//    runIn(4,'cena3')
-//    runIn(6,'cena4')
-//    runIn(8,'cena5')
-//    runIn(10,'cena6')
-//    runIn(12,'autoturnoff')
-//}
-//
-//def cena2() {
-//    sendTasmota('IRsend '+ONIR2)
-//}
-//
-//def cena3() {
-//    sendTasmota('IRsend '+ONIR3)
-///}
-//
-//def cena4() {
-//    sendTasmota('IRsend '+ONIR4)
-//}
-//
-//def cena5() {
-//    sendTasmota('IRsend '+ONIR5)
-//}
-//
-//def cena6() {
-//    sendTasmota('IRsend '+ONIR6)
-//}
-//
-//def autoturnoff() {
-//    sendEvent(name: "switch", value: "off")
-//}
+def cena2() {
+    sendTasmota('IRsend '+ONIR2)
+    log. Info sending cena2
+}
+
+def cena3() {
+    sendTasmota('IRsend '+ONIR3)
+    log. Info sending cena3
+}
+
+def cena4() {
+    sendTasmota('IRsend '+ONIR4)
+    log. Info sending cena4
+}
+
+def cena5() {
+    sendTasmota('IRsend '+ONIR5)
+    log. Info sending cena5
+}
+
+def cena6() {
+    sendTasmota('IRsend '+ONIR6)
+    log. Info sending cena5
+}
+
+def autoturnoff() {
+    sendEvent(name: "switch", value: "off")
+    log. Info sending autoturnoff
+}
 
 def off() {
     sendTasmota('IRsend '+OFFIR)
