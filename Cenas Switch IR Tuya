@@ -66,32 +66,32 @@ def on() {
 
 def cena2() {
     sendTasmota('IRsend '+ONIR2)
-    log. Info sending cena2
+    log.Info sending cena2
 }
 
 def cena3() {
     sendTasmota('IRsend '+ONIR3)
-    log. Info sending cena3
+    log.Info sending cena3
 }
 
 def cena4() {
     sendTasmota('IRsend '+ONIR4)
-    log. Info sending cena4
+    log.Info sending cena4
 }
 
 def cena5() {
     sendTasmota('IRsend '+ONIR5)
-    log. Info sending cena5
+    log.Info sending cena5
 }
 
 def cena6() {
     sendTasmota('IRsend '+ONIR6)
-    log. Info sending cena5
+    log.Info sending cena5
 }
 
 def autoturnoff() {
     sendEvent(name: "switch", value: "off")
-    log. Info sending autoturnoff
+    log.Info sending autoturnoff
 }
 
 def off() {
