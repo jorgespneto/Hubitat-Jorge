@@ -241,31 +241,7 @@ private rand(n) {
 	return (new Random().nextInt(n))
 }
 
-// Jorge Mexeu aqui
-
-//def off() {
-//	if(logEnable) log.info "open()"
-//    def currentLevel = device.currentValue("level")
-//    if (currentLevel == 100) {
-//    	sendEvent(name: "windowShade", value: "open")
-//        return
-//    }
-//	sendTuyaCommand("0104", "00", "0100")
-//}
-
-//def on() {
-//	if(logEnable) log.info "close()"
-//	def currentLevel = device.currentValue("level")
-//    if (currentLevel == 0) {
-//    	sendEvent(name: "windowShade", value: "closed")
-//        return
-//    }
-//	sendTuyaCommand("0104", "00", "0102")
-//}
-
-// Jorge Terminou de mexer aqui
-
-//Acrescentei
+//Acrescentei Jorge
 private Map parseReportAttributeMessage(String description) {
 	Map descMap = (description - "read attr - ").split(",").inject([:]) {
 		map, param -> def nameAndValue = param.split(":")
