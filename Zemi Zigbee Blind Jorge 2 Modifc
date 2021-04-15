@@ -178,6 +178,7 @@ def setLevel(data, rate = null) {
         return
     }
     sendTuyaCommand("0202", "00", "04000000"+HexUtils.integerToHexString(data.intValue(), 1))
+    sendEvent(name: "level", value: level)
 }
 
 def setPosition(position){ //mc new for HE Commands
