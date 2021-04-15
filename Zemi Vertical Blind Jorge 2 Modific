@@ -186,7 +186,7 @@ def setLevel(data, rate = null) {
         return
     }
 	sendTuyaCommand("0202", "00", "04000000"+zigbee.convertToHexString(data.intValue(), 2))
-  sendEvent(name: "level", value: level)
+ 	sendEvent(name: "level", value: level)
 }
 
 def refresh() {
