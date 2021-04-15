@@ -28,8 +28,6 @@ metadata {
 		capability "Actuator"
 		capability "Configuration"
 		capability "Window Shade"
-// mc not supported in HE		capability "Window Shade Preset"
-	//	capability "Switch Level"  Jorge retirou
         capability "Refresh"
 	    capability "HealthCheck" 
 
@@ -170,30 +168,6 @@ def pause() {
 	sendTuyaCommand("0104", "00", "0101")
     
 }
-
-// Jorge Mexeu aqui
-
-//def off() {
-//	if(logEnable) log.info "open()"
-//    def currentLevel = device.currentValue("level")
-//    if (currentLevel == 100) {
-//    	sendEvent(name: "windowShade", value: "open")
-//        return
-//  }
-//	sendTuyaCommand("0104", "00", "0100")
-//}
-
-//def on() {
-//	if(logEnable) log.info "close()"
-//	def currentLevel = device.currentValue("level")
-//    if (currentLevel == 0) {
-//    	sendEvent(name: "windowShade", value: "closed")
-//        return
-//    }
-//	sendTuyaCommand("0104", "00", "0102")
-//}
-
-// Jorge Terminou de mexer aqui
 
 def setLevel(data, rate = null) {
 	if(logEnable) log.info "setLevel("+data+")"
