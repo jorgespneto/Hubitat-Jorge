@@ -24,7 +24,7 @@ import hubitat.zigbee.zcl.DataType
 import hubitat.helper.HexUtils
 
 metadata {
-	definition(name: "ZemiSmart Zigbee Blind", namespace: "ShinJjang", author: "ShinJjang-iquix", ocfDeviceType: "oic.d.blind", vid: "generic-shade") {
+	definition(name: "ZemiSmart Zigbee Blind Jorge 2", namespace: "ShinJjang", author: "ShinJjang-iquix", ocfDeviceType: "oic.d.blind", vid: "generic-shade") {
 		capability "Actuator"
 		capability "Configuration"
 		capability "Window Shade"
