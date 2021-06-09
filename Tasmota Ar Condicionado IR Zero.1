@@ -39,7 +39,7 @@ def initialize() {
 }
 
 def on() { 
-    sendTasmota('IRhvac {"Vendor":"'+VENDOR+'", "Power":"On","Mode":"Cool","FanSpeed":"'+FANMODE+'","Temp":"'+device.currentValue("coolingSetpoint")+'","Quiet":"Off","Turbo":"Off","Econo":"Off","Light":"On"}')
+    sendTasmota('IRhvac {"Vendor":"'+VENDOR+'", "Power":"On","Mode":"Cool","FanSpeed":"Auto","Temp":"'+device.currentValue("coolingSetpoint")+'","Quiet":"Off","Turbo":"Off","Econo":"Off","Light":"On"}')
     sendEvent(name: "switch", value: "on")
     sendEvent(name: "thermostatMode", value: "cool", descriptionText: "Thermostat Mode set to cool", isStateChange: true)
 }
@@ -52,7 +52,7 @@ def off() {
 
 // colei aqui pra baixo
 def setCoolingSetpoint(temperature) {
-    sendTasmota('IRhvac {"Vendor":"'+VENDOR+'", "Power":"On","Mode":"Cool","FanSpeed":"'+FANMODE+'","Temp":"'+temperature+'","Quiet":"Off","Turbo":"Off","Econo":"Off","Light":"On"}')
+    sendTasmota('IRhvac {"Vendor":"'+VENDOR+'", "Power":"On","Mode":"Cool","FanSpeed":"Auto","Temp":"'+temperature+'","Quiet":"Off","Turbo":"Off","Econo":"Off","Light":"On"}')
     sendEvent(name: "coolingSetpoint", value: temperature)
 }
 
