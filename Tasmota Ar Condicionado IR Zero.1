@@ -52,7 +52,7 @@ def off() {
 
 // colei aqui pra baixo
 def setCoolingSetpoint(temperature) {
-    sendTasmota('IRhvac {"Vendor":"'+VENDOR+'", "Power":"On","Mode":"Cool","FanSpeed":"Auto","Temp":"'+temperature+'","Quiet":"Off","Turbo":"Off","Econo":"Off","Light":"On"}')
+    sendTasmota('IRhvac {"Vendor":"'+VENDOR+'","Power":"On","Mode":"Cool","FanSpeed":"Auto","Temp":"'+temperature+'","Quiet":"Off","Turbo":"Off","Econo":"Off","Light":"On"}')
     sendEvent(name: "coolingSetpoint", value: temperature)
 }
 
@@ -62,10 +62,14 @@ def emergencyStop() {
 
 def heat() {
 	sendEvent(name: "thermostatMode", value: "heat", descriptionText: "Thermostat Mode set to heat", isStateChange: true)
+	sendTasmota('IRhvac {"Vendor":"'+VENDOR+'","Power":"On","Mode":"Cool","FanSpeed":"Min","Temp":"'+temperature+'","Quiet":"Off","Turbo":"Off","Econo":"Off","Light":"On"}')
+	
+	
 }
 
 def auto() {
 	sendEvent(name: "thermostatMode", value: "auto", descriptionText: "Thermostat Mode set to auto", isStateChange: true)
+	sendTasmota('IRhvac {"Vendor":"'+VENDOR+'","Power":"On","Mode":"Cool","FanSpeed":"Auto","Temp":"'+temperature+'","Quiet":"Off","Turbo":"Off","Econo":"Off","Light":"On"}')
 }
 
 def emergencyHeat() {
@@ -74,6 +78,7 @@ def emergencyHeat() {
 
 def cool() {
 	sendEvent(name: "thermostatMode", value: "cool", descriptionText: "Thermostat Mode set to cool", isStateChange: true)
+	sendTasmota('IRhvac {"Vendor":"'+VENDOR+'","Power":"On","Mode":"Cool","FanSpeed":"Auto","Temp":"'+temperature+'","Quiet":"Off","Turbo":"On","Econo":"Off","Light":"On"}')
 }
 
 def fan() {
