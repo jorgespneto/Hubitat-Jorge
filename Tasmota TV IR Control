@@ -1,0 +1,347 @@
+metadata {
+    definition(name: "Tasmota TV IR Control", namespace: "jorgespneto", author: "Jorge Palmeira") {
+        capability "SamsungTV"
+        capability "TV"
+        
+
+
+	attribute "channel", "number"
+	attribute "volume", "number"
+	attribute "movieMode", "string"
+	attribute "power", "string"
+	attribute "sound", "string"
+	attribute "picture", "string"
+        
+        
+    	command "hdmi1"
+   	command "hdmi2"
+    	command "netflix"
+   	command "up"
+    	command "down"
+    	command "right"
+    	command "left"
+    	command "confirm"
+    	command "num1"
+    	command "num2"
+    	command "num3"
+    	command "num4"
+    	command "num5"
+    	command "num6"
+    	command "num7"
+    	command "num8"
+    	command "num9"
+    	command "num0"
+
+    }
+}
+preferences {
+	input name: "TasmotaIP", title:"local IP address of Tasmota IR", type: "string", required: true
+	input name: "username", title:"Username of Tasmota IR", type: "string"
+	input name: "password", title:"Password of Tasmota IR", type: "string"
+	input name: "OnIRsend", title:"On - Código IR", type: "string"
+	input name: "OffIRsend", title:"Off - Código IR", type: "string"
+ 	input name: "ChanUpIRsend", title:"Channel Up - Código IR", type: "string"
+ 	input name: "ChanDownIRsend", title:"Channel Down - Código IR", type: "string"
+ 	input name: "VolUpIRsend", title:"Vol Up - Código IR", type: "string"
+ 	input name: "VolDownIRsend", title:"Vol Down - Código IR", type: "string"
+	
+	input name: "hdmi1IRsend", title:"Hdmi1 - Código IR", type: "string"
+	input name: "hdmi2IRsend", title:"Hdmi2 - Código IR", type: "string"
+	input name: "netflixIRsend", title:"netflix - Código IR", type: "string"
+	input name: "upIRsend", title:"up - Código IR", type: "string"
+	input name: "downIRsend", title:"down - Código IR", type: "string"
+	input name: "rightIRsend", title:"right - Código IR", type: "string"
+	input name: "leftIRsend", title:"left - Código IR", type: "string"
+	input name: "confirmIRsend", title:"confirm - Código IR", type: "string"
+	input name: "num1IRsend", title:"num1 - Código IR", type: "string"
+	input name: "num2IRsend", title:"num2 - Código IR", type: "string"
+	input name: "num3IRsend", title:"num3 - Código IR", type: "string"
+	input name: "num4IRsend", title:"num4 - Código IR", type: "string"
+	input name: "num5IRsend", title:"num5 - Código IR", type: "string"
+	input name: "num6IRsend", title:"num6 - Código IR", type: "string"
+	input name: "num7IRsend", title:"num7 - Código IR", type: "string"
+	input name: "num8IRsend", title:"num8 - Código IR", type: "string"
+	input name: "num9IRsend", title:"num9 - Código IR", type: "string"
+	input name: "num0IRsend", title:"num0 - Código IR", type: "string"
+    input name: "muteIRsend", title:"mute - Código IR", type: "string"
+    input name: "unmutedIRsend", title:"unmuted - Código IR", type: "string"
+	input name: "offThreshold", title:"Off Threshold Power (W)", type: "number", required: true, defaultValue: 3.9
+	input name: "onThreshold", title:"On Threshold Power (W)", type: "number", required: true, defaultValue: 4
+}
+
+def parse(String description) {
+    log.debug description
+}
+
+
+def installed() {
+    initialize()
+}
+
+def updated() {
+    initialize()
+}
+
+def initialize() {
+
+}
+
+def on() { 
+    sendTasmota('IRsend '+ONIR)
+    sendEvent(name: "switch", value: "on")
+}
+
+def off() {
+    sendTasmota('IRsend '+OFFIR)
+    sendEvent(name: "switch", value: "off")
+}
+
+
+def channelUp() {
+    sendTasmota('IRsend '+CHUPIR)
+    sendEvent(name: "channel", value: "channelUp")
+}
+
+def channelDown() {
+    sendTasmota('IRsend '+CHDOIR)
+    sendEvent(name: "channel", value: "channelDown")
+}
+
+
+def volumeUp() {
+    sendTasmota('IRsend '+VOLUPIR)
+    sendEvent(name: "volume", value: "volumeUp")
+}
+
+def volumeDown() {
+    sendTasmota('IRsend '+VOLDOIR)
+    sendEvent(name: "volume", value: "volumeDown")
+}
+
+//Comandos Extras
+
+
+def netflix(){
+	sendTasmota('IRsend '+NETFIR)
+	state.button = "Netflix"
+}
+
+
+def hdmi1() {
+	log.debug "Selecting HDMI 1 as input"
+	sendTasmota('IRsend '+HDMI1IR)
+}
+
+def hdmi2() {
+	log.debug "Selecting HDMI 2 as input"
+	sendTasmota('IRsend '+HDMI2IR)
+
+}
+
+def up(){
+	state.button = "up"
+	sendTasmota('IRsend '+UPIR)
+}
+
+def down(){
+	state.button = "down"
+	sendTasmota('IRsend '+DOWNIR)
+}
+
+def right(){
+	state.button = "right"
+	sendTasmota('IRsend '+RIGHTIR)
+}
+
+def left(){
+	state.button = "left"
+	sendTasmota('IRsend '+leftIR)
+}
+
+def confirm(){
+	state.button = "confirm"
+	sendTasmota('IRsend '+CONFIRMIR)
+}
+
+def num1(){
+	state.button = "num1"
+	sendTasmota('IRsend '+NUM1IR)
+}
+
+def num2(){
+	state.button = "num2"
+	sendTasmota('IRsend '+NUM2IR)
+
+}
+
+def num3(){
+	state.button = "num3"
+	sendTasmota('IRsend '+NUM3IR)
+}
+
+def num4(){
+	state.button = "num4"
+	sendTasmota('IRsend '+NUM4IR)
+}
+
+def num5(){
+	state.button = "num5"
+	sendTasmota('IRsend '+NUM5IR)
+}
+
+def num6(){
+	state.button = "num6"
+	sendTasmota('IRsend '+NUM6IR)
+}
+
+def num7(){
+	state.button = "num7"
+	sendTasmota('IRsend '+NUM7IR)
+}
+
+def num8(){
+	state.button = "num8"
+	sendTasmota('IRsend '+NUM8IR)
+}
+
+def num9(){
+	state.button = "num9"
+	sendTasmota('IRsend '+NUM9IR)
+}
+
+def num0(){
+	state.button = "num0"
+	sendTasmota('IRsend '+NUM0IR)
+}
+
+
+def mute(){
+	sendEvent(name: "mute", value: "mute")
+	sendTasmota('IRsend '+MUTEIR)
+    
+}
+
+def unmuted(){
+	sendEvent(name: "mute", value: "unmuted")
+	sendTasmota('IRsend '+UNMUTEDIR)
+}
+
+
+//Fim dos comandos extras
+
+def sendTasmota(command) {
+	def options = [
+		method: "GET",
+		headers: [HOST: settings.TasmotaIP+":80"],
+		path: "/cm?user=" + (settings.username ?: "") + "&password=" + (settings.password ?: "") + "&cmnd=" + URLEncoder.encode(command, "UTF-8").replaceAll(/\+/,'%20')
+	]
+	log.debug options
+	def hubAction = new hubitat.device.HubAction(options, null) //Alterei
+	sendHubCommand(hubAction)
+}
+
+def getONIR() {
+	return (settings.OnIRsend ?: "")
+}
+
+def getOFFIR() {
+	return (settings.OffIRsend ?: "")
+}
+
+
+def getCHUPIR() {
+	return (settings.ChanUpIRsend ?: "")
+}
+
+def getCHDOIR() {
+	return (settings.ChanDownIRsend ?: "")
+}
+
+def getVOLUPIR() {
+	return (settings.VolUpIRsend ?: "")
+}
+
+def getVOLDOIR() {
+	return (settings.VolDownIRsend ?: "")
+}
+
+def getNETFIR() {
+	return (settings.netflixIRsend ?: "")
+}
+def getHDMI1IR() {
+	return (settings.hdmi1IRsend ?: "")
+}
+
+def getHDMI2IR() {
+	return (settings.hdmi2IRsend ?: "")
+}
+
+def getUPIR() {
+	return (settings.upIRsend ?: "")
+}
+
+def getDOWNIR() {
+	return (settings.downIRsend ?: "")
+}
+
+def getRIGHTIR() {
+	return (settings.rightIRsend ?: "")
+}
+
+def getLEFTIR() {
+	return (settings.leftIRsend ?: "")
+}
+
+def getCONFIRMIR() {
+	return (settings.confirmIRsend ?: "")
+}
+
+def getNUM1IR() {
+	return (settings.num1IRsend ?: "")
+}
+
+def getNUM2IR() {
+	return (settings.num2IRsend ?: "")
+}
+
+def getNUM3IR() {
+	return (settings.num3IRsend ?: "")
+}
+
+def getNUM4IR() {
+	return (settings.num4IRsend ?: "")
+}
+
+def getNUM5IR() {
+	return (settings.num5IRsend ?: "")
+}
+
+def getNUM6IR() {
+	return (settings.num6IRsend ?: "")
+}
+
+def getNUM7IR() {
+	return (settings.num7IRsend ?: "")
+}
+
+def getNUM8IR() {
+	return (settings.num8IRsend ?: "")
+}
+
+def getNUM9IR() {
+	return (settings.num9IRsend ?: "")
+}
+
+def getNUM0IR() {
+	return (settings.num0IRsend ?: "")
+}
+
+
+def getMUTEIR() {
+	return (settings.muteIRsend ?: "")
+}
+
+
+def getUNMUTEDIR() {
+	return (settings.unmutedIRsend ?: "")
+}
